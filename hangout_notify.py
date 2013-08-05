@@ -1,0 +1,1 @@
+/home/hercules/bin/hangout_notify
