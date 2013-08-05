@@ -74,7 +74,7 @@ def main():
     config_params = get_params()
     client = setup(config_params)
     if "dzen" in config_params["format"]:
-        write_out("^fg(red)Connected^fg() -- ^fg(white)no new messages ~^fg()")
+        write_out("^fg(red)Connected^fg() -- ^fg(white)no new messages ~^fg()", dump_path)
     else:
         write_out("Connected -- no new messages ~", dump_path)
     while client.Process(1):
