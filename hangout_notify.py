@@ -1,6 +1,6 @@
 #!/usr/bin/python2.7
 
-import os,sys,xmpp
+import os,sys,xmpp,keyring
 
 dump_path = os.environ['HOME']+"/tmp/hangout_status"
 config_params = {}
@@ -30,7 +30,10 @@ def setup(params):
     cl=xmpp.Client('gmail.com', debug=[])
 
     cl.connect(server=('talk.google.com', 5222))
-    cl.auth(params['jid'], params['password'], 'gmail.com')
+    if 'T' in params['keyring']:
+        cl.auth(params['jid'], keyring.get_password("hangout_notify", params['jid']), 'gmail.com')
+    else:
+        cl.auth(params['jid'], params['password'], 'gmail.com')
 
     cl.RegisterHandler("message", make_message_handler(params))
     cl.sendInitPresence()
@@ -61,7 +64,6 @@ def write_out(text, path=None):
             os.makedirs(d)
         x = open(path, "w")
         x.write(text)
-        print text
         x.close()
     else:
         print text
