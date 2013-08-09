@@ -14,13 +14,18 @@ Available configuration points include
 | parameter     | value         |
 | ------------- |:-------------:| 
 | jid      | email address without domain | 
-| password      | your password (plaintext, sorry)      | 
+| keyring   | 'T' or anything else for false |
+| password      | your password     | 
 | format | dzen or *      | 
 | contact email | alias      | 
 | name_color | basic color      | 
 | message_color | basic color      | 
 
 
+If `keyring` is specified as true, for example `keyring=True`, leave the
+password field blank. Make sure you have the python package `python2-keyring`
+installed, and set up a password using `keyring.set_password("hangout_notify",
+"[email address without domain]", "PASSWORD")`
 
 Dzen format will output messages using `^fg()` tags, based on the specified colors (white, red, etc.), for use in dzen2.
 
